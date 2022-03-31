@@ -1,7 +1,10 @@
-import React from 'react';
+import React, {useState} from 'react';
 import './App.css';
 
-function App() {
+const App: React.FC = () => {
+  const [todo, setTodo] = useState<string>('');
+  const [todos, setTodos] = useState([]);
+
   return (
     <div className="App">
       <p>test</p>
