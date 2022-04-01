@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
-import Button from '@mui/material/Button';
-import Stack from '@mui/material/Stack';
-import { Todo } from '../TodoInterface';
+import IconButton from '@mui/material/IconButton';
+import Container from '@mui/material/Container';
+import AddIcon from '@mui/icons-material/Add'; import { Todo } from '../../TodoInterface';
 
 
 interface Props {
@@ -19,10 +19,13 @@ export const TodoForm: React.FC<Props> = ({ todoTitle, setTodoTitle, addTodo, to
   return (
     <React.Fragment>
       {todos?.length > 0 && <h3>Completed: </h3>}
-      <Stack justifyContent='center' direction='row' spacing={2}>
-
-        <Box component='form' onSubmit={(e: React.FormEvent) => addTodo(e)} sx={{ margin: 1 }}>
+      <Container>
+        <Box
+          component='form'
+          onSubmit={(e: React.FormEvent) => addTodo(e)}
+          sx={{ margin: 1, minWidth: 200 }}>
           <TextField
+            fullWidth
             required
             margin='normal'
             label='todo'
@@ -31,17 +34,17 @@ export const TodoForm: React.FC<Props> = ({ todoTitle, setTodoTitle, addTodo, to
             autoFocus
             value={todoTitle}
             onChange={(e) => setTodoTitle(e.target.value)}
+            InputProps={{
+              endAdornment:
+                <IconButton type='submit'>
+                  <AddIcon />
+                </IconButton>
+            }}
           >
 
           </TextField>
-          <Button
-            type='submit'
-            variant='contained'
-          >
-            +
-          </Button>
         </Box>
-      </Stack>
-    </React.Fragment>
+      </Container>
+    </React.Fragment >
   )
 }
