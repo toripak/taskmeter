@@ -7,7 +7,7 @@ export const Header: React.FC = () => {
     <React.Fragment>
       <Toolbar sx={{ borderBottom: 1, borderColor: 'divider' }}>
         <Typography variant='h6' component='h1' color='inherit' noWrap>
-          .taskmaster
+          .taskmeter
         </Typography>
         <Typography variant='subtitle2' marginLeft='auto'>
           {new Date().toLocaleDateString('en-gb', { weekday: "long", year: "numeric", month: "short", day: "numeric" })}
@@ -17,17 +17,3 @@ export const Header: React.FC = () => {
   )
 }
 
-/* 
-function Copyright() {
-  return (
-    <Typography variant="body2" color="text.secondary" align="center">
-      {'Copyright © '}
-      <Link color="inherit" href="https://mui.com/">
-        Your Website
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
-*/
