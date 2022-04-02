@@ -1,6 +1,6 @@
 import React from 'react';
 import { TodoItem } from '../TodoItem/TodoItem';
-import { Todo } from '../../TodoInterface';
+import { Todo } from '../../utils/TodoInterface';
 
 import Stack from '@mui/material/Stack';
 

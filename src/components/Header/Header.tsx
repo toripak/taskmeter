@@ -6,10 +6,10 @@ export const Header: React.FC = () => {
   return (
     <React.Fragment>
       <Toolbar sx={{ borderBottom: 1, borderColor: 'divider', bgcolor: '#e1f5fe' }}>
-        <Typography variant='h6' component='h1'>
+        <Typography variant='h6' component='h1' sx={{ paddingLeft: 1 }}>
           .taskMeter
         </Typography>
-        <Typography variant='subtitle2' marginLeft='auto'>
+        <Typography variant='subtitle2' marginLeft='auto' sx={{ paddingRight: 1 }}>
           {new Date().toLocaleDateString('en-gb', { weekday: "long", year: "numeric", month: "short", day: "numeric" })}
         </Typography>
       </Toolbar>

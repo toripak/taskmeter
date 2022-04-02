@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Todo } from '../../TodoInterface';
+import { Todo } from '../../utils/TodoInterface';
 import Card from '@mui/material/Card';
 import Stack from '@mui/material/Stack';
 import CardActions from '@mui/material/CardActions';

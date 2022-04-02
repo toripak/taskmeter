@@ -6,7 +6,7 @@ import IconButton from '@mui/material/IconButton';
 import Container from '@mui/material/Container';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 
-import { Todo } from '../../TodoInterface';
+import { Todo } from '../../utils/TodoInterface';
 
 interface Props {
   todoTitle: string;
@@ -19,7 +19,7 @@ export const TodoForm: React.FC<Props> = ({ todoTitle, setTodoTitle, addTodo, to
 
   return (
     <React.Fragment>
-      <Container sx={{ pt: 3 }} maxWidth="md">
+      <Container sx={{ pt: 4 }} maxWidth="md">
         <Box
           component='form'
           sx={{ display: 'flex' }}
