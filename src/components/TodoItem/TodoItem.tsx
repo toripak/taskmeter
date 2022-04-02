@@ -8,7 +8,9 @@ import DoneIcon from '@mui/icons-material/Done';
 import ClearIcon from '@mui/icons-material/Clear';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
-
+import ModeEditIcon from '@mui/icons-material/ModeEdit';
+import TextField from '@mui/material/TextField';
+import Box from '@mui/material/Box';
 
 interface Props {
   todoItem: Todo;
@@ -17,8 +19,15 @@ interface Props {
 }
 
 export const TodoItem = ({ todoItem, setTodos, todos }: Props) => {
+  const { id, todoTitle, isCompleted } = todoItem;
+  const [newTodoTitle, setNewTodoTitle] = useState<string>(todoTitle);
+  const [isUpdating, setIsUpdating] = useState<boolean>(false);
 
-  const { id, todoTitle } = todoItem;
+  const handleUpdate = (e: React.FormEvent, id: number) => {
+    e.preventDefault();
+    setTodos(todos.map(todo => todo.id === id ? { ...todo, todoTitle: newTodoTitle } : todo));
+    setIsUpdating(false);
+  }
 
   const deleteTodo = (id: number) => {
     setTodos(todos.filter(todo => todo.id !== id));
@@ -38,8 +47,18 @@ export const TodoItem = ({ todoItem, setTodos, todos }: Props) => {
             sx={{
               mx: 1, display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: "100%", color: '#444'
             }} >
-
-            {todoItem?.isCompleted ? (
+            {isUpdating ? (
+              <Box
+                component='form'
+                onSubmit={(e: React.FormEvent) => handleUpdate(e, id)}
+              >
+                <TextField
+                  value={newTodoTitle}
+                  onChange={(e) => setNewTodoTitle(e.target.value)}
+                >
+                </TextField>
+              </Box>
+            ) : todoItem?.isCompleted ? (
               <Typography padding={1} sx={{ overflow: 'auto', textOverflow: 'ellipsis', textDecoration: 'line-through', fontSize: 14 }}>
                 {todoTitle}
               </Typography>
@@ -56,19 +75,30 @@ export const TodoItem = ({ todoItem, setTodos, todos }: Props) => {
                   size="small"
                   color='secondary'
                 >
-                  <DoneIcon
-                  />
+                  <ModeEditIcon />
                 </IconButton>
               ) : (
                 <IconButton
                   size="small"
-                  color='success'
-                  onClick={(e) => completeTodo(id)}
+                  color='primary'
+                  onClick={(e) => {
+                    if (!isUpdating && !isCompleted) {
+                      setIsUpdating(!isUpdating);
+                    }
+                  }}
                 >
-                  <DoneIcon
-                  />
+                  <ModeEditIcon />
                 </IconButton>
               )}
+
+              <IconButton
+                size="small"
+                color='success'
+                onClick={(e) => completeTodo(id)}
+              >
+                <DoneIcon
+                />
+              </IconButton>
 
               <IconButton
                 size="small"
