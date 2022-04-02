@@ -4,8 +4,9 @@ import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import IconButton from '@mui/material/IconButton';
 import Container from '@mui/material/Container';
-import AddIcon from '@mui/icons-material/Add'; import { Todo } from '../../TodoInterface';
+import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 
+import { Todo } from '../../TodoInterface';
 
 interface Props {
   todoTitle: string;
@@ -18,33 +19,35 @@ export const TodoForm: React.FC<Props> = ({ todoTitle, setTodoTitle, addTodo, to
 
   return (
     <React.Fragment>
-      {todos?.length > 0 && <h3>Completed: </h3>}
-      <Container>
+      <Container sx={{ pt: 3 }} maxWidth="md">
         <Box
           component='form'
+          sx={{ display: 'flex' }}
           onSubmit={(e: React.FormEvent) => addTodo(e)}
-          sx={{ margin: 1, minWidth: 200 }}>
+        >
           <TextField
+            sx={{ bgcolor: 'background.paper', flex: '1', justifyContent: 'center', display: 'flex', mb: 2 }}
             fullWidth
             required
-            margin='normal'
             label='todo'
             variant='outlined'
-            placeholder='Add new item'
+            placeholder='Add new todo'
             autoFocus
             value={todoTitle}
             onChange={(e) => setTodoTitle(e.target.value)}
             InputProps={{
               endAdornment:
                 <IconButton type='submit'>
-                  <AddIcon />
+                  <AddCircleOutlineIcon color='primary' />
                 </IconButton>
             }}
           >
 
           </TextField>
         </Box>
+
       </Container>
+
     </React.Fragment >
   )
 }
