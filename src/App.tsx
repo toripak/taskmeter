@@ -35,13 +35,18 @@ const LinearProgressWithLabel = (props: LinearProgressProps & { value: number })
 
 const App: React.FC = () => {
   const [todoTitle, setTodoTitle] = useState<string>('');
-  const [todos, setTodos] = useState<Todo[]>([]);
+  const [todos, setTodos] = useState<Todo[]>(
+    JSON.parse(localStorage.getItem('todos') || '[]')
+  );
   const [completedTodos, setCompletedTodos] = useState<number>(0);
 
   useEffect(() => {
     setCompletedTodos(todos.filter(todo => todo.isCompleted).length);
-  }, [todos])
+  }, [todos]);
 
+  useEffect(() => {
+    localStorage.setItem('todos', JSON.stringify(todos))
+  }, [todos]);
 
   const addTodo = (e: React.FormEvent) => {
     e.preventDefault();
